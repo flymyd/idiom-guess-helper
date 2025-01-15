@@ -24,12 +24,12 @@ const pattern = computed(() => {
     if (!char.initial && !char.final) {
       return `X-${char.tone || 'X'}`;
     }
-    
+
     // 只填韵母视为零声母音节
     if (!char.initial && char.final) {
       return `${char.final}-${char.tone || 'X'}`;
     }
-    
+
     const initial = char.initial || 'X';
     // 普通音节需要声母和韵母
     if (!char.final) {
@@ -65,6 +65,13 @@ const rules = {
 const helpDialogVisible = ref(false);
 
 const helpContent = [
+  {
+    title: '简介',
+    items: [
+      '这是一款基于拼音分解的成语查找工具，可以帮助你快速找到与给定拼音匹配的成语。',
+      '人人都可以是花蛤！'
+    ]
+  },
   {
     title: '基本规则',
     items: [
@@ -143,7 +150,7 @@ const helpContent = [
 
     <div class="button-container">
       <el-button type="primary" @click="searchIdioms" class="action-button">查找成语</el-button>
-      <el-button @click="clearForm" class="action-button">清空输入</el-button>
+      <el-button type="warning" @click="clearForm" class="action-button">清空输入</el-button>
     </div>
 
     <div v-if="totalMatches > 0" class="results">
@@ -176,6 +183,8 @@ const helpContent = [
             </li>
           </ul>
         </div>
+        <p>Powered by 绝代天骄-不吵 aka 段锻椴</p>
+        <p>favicon <a href="https://weibo.com/u/2151719441">@风花雪月校长</a></p>
       </div>
     </el-dialog>
   </div>
